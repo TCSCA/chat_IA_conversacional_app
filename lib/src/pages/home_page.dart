@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 
 import '../models/message_models.dart';
 import '../widgets/message_list_widget.dart';
+import '../widgets/typing_indicator_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,6 +22,8 @@ class _HomePageState extends State<HomePage> {
   Map<String, String> body = {'message': ''};
 
   String myVar = '';
+
+  bool isTyping = true;
 
   @override
   void initState() {
@@ -44,6 +47,12 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child: MessagesList(
               messages: messages,
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: TypingIndicator(
+              showIndicator: isTyping,
             ),
           ),
           Container(
@@ -83,6 +92,7 @@ class _HomePageState extends State<HomePage> {
                       body['message'] = _msgUserCtrl.text;
                       myVar = _msgUserCtrl.text;
                       _msgUserCtrl.clear();
+                      isTyping = true;
                       setState(() {});
                       sonciChatService(myVar);
                     }
@@ -119,6 +129,7 @@ class _HomePageState extends State<HomePage> {
           date: DateTime.now().subtract(Duration(minutes: 1)),
           isSendByMe: false));
 
+      isTyping = false;
       setState(() {});
 
       print(decodedResp);
