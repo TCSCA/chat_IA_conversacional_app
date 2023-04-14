@@ -35,6 +35,8 @@ class MessagesList extends StatelessWidget {
           /// de nuestra lista de atrás hacia adelante
           message: obj.text,
           isUserMessage: obj.isSendByMe,
+          question1: obj.question1,
+          question2: obj.question2,
         );
       },
       reverse: true,
