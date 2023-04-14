@@ -110,13 +110,6 @@ class _HomePageState extends State<HomePage> {
 
                       if (_msgUserCtrl.text != "") {
 
-                        List<Message>? variable = [];
-                        variable.add(state.messages);
-
-                        variable?.add(Message(text: _msgUserCtrl.text, date: DateTime.now(), isSendByMe: true));
-
-
-
                         context.read<ChatBloc>().add(OnSendMessage(message: _msgUserCtrl.text));
                     /* messages.add(Message(
                             text: _msgUserCtrl.text,

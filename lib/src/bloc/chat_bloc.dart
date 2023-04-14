@@ -34,9 +34,35 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
 }
 
 Future<List<Message>> copyMessage(List<Message> vare, text) async {
-  List<Message> variable = vare;
-  DateTime veri = DateTime.now();
-  variable.add(Message(text: text, date: veri, isSendByMe: true));
+  List<Message> variable = [];
+  
+
+
+  if(!vare.isEmpty) {
+
+ /*   vare.map((e) => {
+      variable.add(
+        Message(
+          isSendByMe: vare[e].isSendByMe,
+          date: vare[i].date,
+          text: vare[i].text,
+        ),
+      )
+    });*/
+
+    for (var i = 0; i < vare.length; i++) {
+      variable.add(
+        Message(
+          isSendByMe: vare[i].isSendByMe,
+          date: vare[i].date,
+          text: vare[i].text,
+        ),
+      );
+    }
+  }
+
+
+  variable.add(Message(text: text, date: DateTime.now(), isSendByMe: true));
 
   return variable;
 }
