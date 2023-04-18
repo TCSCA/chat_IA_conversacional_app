@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.indigo[400],
       ),
       body: BlocProvider(
-        create: (context) => ChatBloc(),
+        create: (context) => ChatBloc()..add(OnInitialState()),
         child: bodyChat(),
       ),
     );
@@ -111,6 +111,7 @@ class _HomePageState extends State<HomePage> {
                       if (_msgUserCtrl.text != "") {
 
                         context.read<ChatBloc>().add(OnSendMessage(message: _msgUserCtrl.text));
+                        context.read<ChatBloc>().add(OnRecivedMessage(message: _msgUserCtrl.text));
                     /* messages.add(Message(
                             text: _msgUserCtrl.text,
                             date: DateTime.now(),

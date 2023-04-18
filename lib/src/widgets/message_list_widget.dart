@@ -37,6 +37,9 @@ class MessagesList extends StatelessWidget {
           isUserMessage: obj.isSendByMe,
           question1: obj.question1,
           question2: obj.question2,
+          question3: obj.question3,
+          question4: obj.question4,
+          question5: obj.question5,
         );
       },
       reverse: true,

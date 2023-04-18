@@ -27,7 +27,6 @@ class _TypingIndicatorState extends State<TypingIndicator>
   late AnimationController _appearanceController;
 
   late Animation<double> _indicatorSpaceAnimation;
-
   late Animation<double> _smallBubbleAnimation;
   late Animation<double> _mediumBubbleAnimation;
   late Animation<double> _largeBubbleAnimation;

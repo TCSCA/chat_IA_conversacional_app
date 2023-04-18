@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/chat_bloc.dart';
 
 class MessageContainer extends StatelessWidget {
   final String? message;
@@ -89,6 +92,7 @@ class MessageContainer extends StatelessWidget {
                   /// Espaciado
                   padding: const EdgeInsets.all(10),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         /// Obtenemos el texto del mensaje y lo pintamos.
@@ -100,18 +104,40 @@ class MessageContainer extends StatelessWidget {
                                 : Colors.black),
                       ),
                       if (question1 != null)
-                        Card(
-                          child: Text(question1!),
-                        ),
+                        cardStyle(context, question1!),
                       if (question2 != null)
-                        Card(
-                          child: Text(question2!),
-                        )
+                        cardStyle(context, question2!),
+                      if (question3 != null)
+                        cardStyle(context, question3!),
+                      if (question4 != null)
+                        cardStyle(context, question4!),
+                      if (question5 != null)
+                        cardStyle(context, question5!),
                     ],
                   ),
                 ),
               ),
       ],
+    );
+  }
+
+  Widget cardStyle(BuildContext context, String question) {
+    return GestureDetector(
+      onTap: () async{
+        context.read<ChatBloc>().add(OnSendMessage(message: question));
+
+        context.read<ChatBloc>().add(OnRecivedMessage(message: question));
+      },
+      child: Card(
+        color: Colors.indigo[400],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          child: Text(
+            question,
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+      ),
     );
   }
 }
